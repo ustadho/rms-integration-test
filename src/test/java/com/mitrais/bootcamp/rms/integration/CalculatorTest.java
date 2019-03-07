@@ -1,0 +1,13 @@
+package com.mitrais.bootcamp.rms.integration;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+        features = {"src/test/java/features/Calculator.feature"},
+        glue = {"com.mitrais.bootcamp.rms.integration.stepdefs"}
+)
+public class CalculatorTest {
+}
