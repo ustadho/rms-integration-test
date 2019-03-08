@@ -1,0 +1,31 @@
+security:
+  basic:
+    enabled: false
+welcome:
+  message: Welcome message from property file! Welcome to ${app.name} in DEV
+basic:
+  message: Dynamic Message in DEV
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+    platform: h2
+    initialization-mode: ALWAYS
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  flyway:
+    locations=classpath:db/migration/{vendor}:

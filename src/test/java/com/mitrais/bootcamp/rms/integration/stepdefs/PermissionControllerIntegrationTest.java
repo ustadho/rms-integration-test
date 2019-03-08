@@ -19,27 +19,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
-public class DepartmentControllerIntegrationTest extends SpringIntegrationTest{
+public class PermissionControllerIntegrationTest extends SpringIntegrationTest{
     protected ResultActions actions;
 
     @Autowired
     private MockMvc mockMvc;
 
-    @When("^the client call /department/all$")
-    public void the_client_call_departmentall() throws Throwable {
-        actions = mockMvc.perform(get("/department/all")
+    @Before
+    public void SetupCucumberSpringContext() {
+        //dummy method so cucumber will recognize this class as glue
+        //and use its context configuration
+    }
+
+    @When("^the client call /permissions$")
+    public void the_client_call_permissions() throws Throwable {
+        actions = mockMvc.perform(get("/permissions")
                 .accept(MediaType.APPLICATION_JSON));
     }
 
-    @Then("^the department receives status of 200$")
-    public void the_department_receives_status_of_200() throws Throwable {
+    @Then("^the client receives status of 200$")
+    public void the_client_receives_status_of_200() throws Throwable {
         actions.andExpect(status().isOk());
-    }
-
-    @And("^the response should be contain:$")
-    public void the_response_should_be_contain(String sDept) throws Throwable {
-        actions.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$[0].name").value(sDept));
     }
 
 }
